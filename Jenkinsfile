@@ -1,8 +1,13 @@
-pipeline {
+@Library('roboshop-shared-library') _
+
+ pipeline {
     agent any 
     stages {
         stage('Lint Checks') {
-            steps {
+            steps {  
+                script {
+                    sample.info('user')
+                }
                 sh "echo Installing JSlint"
                 sh "npm i jslint"
                 sh "node_modules/jslint/bin/jslint.js server.js || true"
